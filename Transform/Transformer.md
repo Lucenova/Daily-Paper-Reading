@@ -91,13 +91,16 @@ $$z_i=\sum\alpha_{i,j}(x_jW^{V}+a_{i,j}^{V})$$
 
 $$e_{i,j}=\frac{x_iW^Q(x_jW^K+a_{i,j}^K)^T}{\sqrt{d_z}}$$
 
-需要注意的是公式中的$a_{i,j}^{V}$和$a_{i,j}^{K}$是两个不同relative postition embedding matrix中的embedding vector。
+需要注意的是公式中的$a_{i,j}^{V}$和$a_{i,j}^{K}$是两个不同relative postition embedding matrix中的embedding vector，其维度$d\in{R^{token*token}}$，先看看公式中的relative position embedding是怎么得到的。
 
-下面介绍一下使用的relative position embedding matrix中的vector的含义：
+从直觉上来说，如果我们想合理的表示一个句子的relative position embedding，举例来说当输入的句子input为length=5的sentence的（I think therefore I am），需要学习的embedding matrix的行数就为9（index=4表示的是当前单词的位置信息，index=0到3表示当前单词的左边的单词，index=5到9就是右边的单词），基于此我们可以初始化一个matrix其维度为$d\in{R^{token * (2 * token-1)}}$，但是这个matrix中并不是所有的元素都是有用的。比如index=0的token，这个token相对于input的其他token，只有右侧的relative position。
 
-举例来说，当输入的句子input为length=5的sentence的（I think therefore I am），需要学习的embedding matrix的行数就为9（index=4表示的是当前单词的位置信息，index=0到3表示当前单词的左边的单词，index=5到9就是右边的单词）。
+reference url: https://theaisummer.com/positional-embeddings/
 
-需要注意的是，对于一个比较长的句子，如果计算$i$和$j$的相关性的时候，如果$i$和$j$相距的距离较远，那么在使用embedding matrix中的vector的时候就会有clipped，其实就是作者认为相对位置编码再超过了一定距离之后是没有必要的，并且clip最大距离可以使模型的泛化效果更好，可以更好的generalize到训练过程中没有出现过的序列长度上。
+所以将初始化的维度为$d\in{R^{token*(2*token-1)}}$的matrix提取出有意义的元素，就是一个维度为$d\in{R^{token * token}}$的$w$。
+
+需要注意的是上面计算公式中使用的$a_{i,j}^{V}$或者$a_{i,j}^{K}$并不是等于$w_{i,j}$，对于一个比较长的句子，就会有clipped。作者认为相对位置编码再超过了一定距离之后是没有必要的，并且clip最大距离可以使模型的泛化效果更好，可以更好的generalize到训练过程中没有出现过的序列长度上。
+
 
 
 
