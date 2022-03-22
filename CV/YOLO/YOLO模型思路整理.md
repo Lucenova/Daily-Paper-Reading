@@ -15,6 +15,12 @@
 
 最终对应的模型一个cell对应的输出的维度是**(c, w, h, x, y, c, w, h, x, y, one-hot)**，这里之所有有两个**(c, w, h, x, y)**是对应一个大目标，一个小目标。
 
+##### YOLO v1的模型结构
+
+<img src="./v2-70005c21ddd8470ae5587b231987cb7d_r.png" alt="preview" style="zoom:50%;" />
+
+YOLO v1的backbone是对应的是Google Net，因为没有多尺度融合，所以YOLO v1相当于没有neck结构。
+
 ##### YOLO v1的LOSS函数
 
 YOLO v1的LOSS函数对应的只计算了前景的loss。通俗点说就是只计算了label中对应的目标框和模型预测的目标框的之间的参数的差距，如果模型某个cell预测了不存在的目标框，YOLO v1是不考虑计算在内的。
@@ -29,13 +35,21 @@ YOLO v1虽然速度很快，但是很多目标检测不到，同时预测的框�
 
 然后是YOLO v1很多目标找不到的问题，YOLO v2针对于这个问题将YOLO v1的7*7个区域变成了13\*13个区域，并且每个区域有5个anchor。
 
+##### YOLO v2模型结构
+
+YOLO v2对应使用的backbone为darknet52，对应的模型的架构图如图所示：
+
+<img src="./v2-33a0c926dc46085ac913b5262edb3a0a_1440w.png" alt="img" style="zoom:50%;" />
+
 ##### YOLO v2的损失函数
 
 <img src="./image-20220318211906621.png" alt="image-20220318211906621" style="zoom:50%;" />
 
 ##### YOLO v3模型思路
 
-YOLO v2在小目标检测上的性能还不是很好，因此YOLO v3引入了多尺度检测头（stride分别为32，16，8），同时在一个stride下对应的grid也均设置了3个anchor。模型的流程如下图所示：
+YOLO v2在小目标检测上的性能还不是很好，因此YOLO v3引入了多尺度检测头（stride分别为32，16，8），同时在一个stride下对应的grid也均设置了3个anchor。本质上来说stride实现的方式就是通过多个卷积将输入的图片按照2倍的conv大小进行下采样，然后分别按照缩小的倍数等于32，16，8的时候提取特征。
+
+##### YOLO v3模型结构
 
 <img src="./image-20220318212456369.png" alt="image-20220318212456369" style="zoom:35%;" />
 
@@ -75,6 +89,12 @@ YOLO v3的损失函数定义如下：
   b_y = 1.1\cdot\sigma(t_t)+c_y
   $$
   这里的**1.1**是一个超参数，这样相当于扩大了$\sigma(x)$的阈值。
+
+##### YOLO v4的模型结构
+
+相较于YOLO v3来进行对比来说，其实就多了**CSP结构，PAN结构**
+
+<img src="./v2-88544afd1a5b01b17f53623a0fda01db_r.png" alt="preview" style="zoom:50%;" />
 
 ##### YOLO v4 LOSS函数
 
