@@ -113,3 +113,87 @@
 
 ##### 图像滤波
 
+滤波实际上是信号处理的一个概念，图像可以看作为一个二维信号，其中像素点的灰度值代表信号的强弱。信号中高频带遍图像上变化剧烈的部分，低频则是对应图片灰度值变化缓慢，平坦的地方，根据图像的高低频，设置高通和低通滤波器，高通滤波器可以检测变化尖锐明显的地方 ，低通滤波器可以让图片变得平滑，消除噪声，所以高通滤波器用于**边缘检测**，低通滤波器用于图像的**平滑去噪**。
+
+##### 线性滤波
+
+- 方框滤波
+
+  方框的滤波的滤波核：
+
+  <img src="/Users/zhuyue/Code/Python/collected-papers/CV/openCV/image-20220327220311160.png" alt="image-20220327220311160" style="zoom:50%;" />
+
+  ```python
+  import cv2
+  import python	
+  
+  img = cv2.imread('girl2.png', cv2.IMREAD_UNCHANGED)
+  # cv2.boxFilter(src, depth, ksize, normalize)
+  r = cv2.boxFilter(img, -1, (3, 3), normalize=1)
+  d = cv2.boxFilter(img, -1, (3, 3), normalize=0)
+  
+  ```
+
+- 均值滤波
+
+  从卷积核就能看出来就是利用卷积求平均
+
+  ![image-20220327221000422](/Users/zhuyue/Code/Python/collected-papers/CV/openCV/image-20220327221000422.png)
+
+  ```python
+  import cv2
+  import numpy as np
+  
+  img = cv2.read('image/opencv.png')
+  # cv2.blur(img, ksize)
+  blur = cv2.blur(img, (7,7))
+  ```
+
+- 高斯滤波
+
+  高斯滤波是一种线性平滑滤波，使用于消除高斯噪声，广泛应用于图像处理的减噪过程。高斯滤波的卷积核权重并不相同，中间像素点的权重最高，越离中心的像素权重越小，就是一个2维高斯函数。
+
+  ```python
+  import cv2
+  import numpy as np
+  
+  img = cv2.imread('image/opencv.png')
+  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  # cv2.GuassianBlur(src, ksize, std)
+  # std：平滑时，调整std实际上再调整周围像素对当前像素的影响的程度，调大std即提高了远处像素对中心像素的影响程度，滤波结果就越平滑
+  blur = cv2.GaussianBlur(img, (5,5), 0)
+  ```
+
+##### 非线性滤波
+
+- 中值滤波
+
+  中值滤波是一种非线性滤波，使用像素点领域灰度值的中值代替该点的灰度值，中值滤波可以去除椒盐噪声和斑点噪声
+
+  ```python
+  import cv2
+  import numpy as np
+  
+  img = cv2.imread('image/median.png')
+  median = cv2.medianBlur(img, 5)
+  ```
+
+  
+
+- 双边滤波
+
+  双边滤波是一种非线性的滤波方法，是结合图像的空间邻近度和像素值相似度的一种折中处理，同时考虑空间与信息和灰度相似性，达到保边去噪的目的，具
+
+  有简单、非迭代、局部处理的特点。
+
+  ```python
+  import cv2
+  import numpy as np
+  
+  img = cv2.imread('image/opencv.png')
+  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  blur = cv2.bilaterFilter(img, -1, 15, 10)
+  ```
+
+  
+
