@@ -29,3 +29,7 @@ tmux switch -t <session-name>
 
 control + b
 
+从tmux当前窗口的推出的快捷键是：
+
+control + b + d
+
