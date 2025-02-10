@@ -38,7 +38,23 @@ They analyzed the representation space of MLLMs and their cosreponding visual la
 
 ##### Object Information Extraction
 
-<img src="../resource/image-20250130014338157.png" alt="image-20250130014338157" style="zoom:67%;" />
+<img src="../resource/image-20250130014338157.png" alt="image-20250130014338157" style="zoom: 50%;" />
 
-- The output object token from the vision encoder perserves discriminative information for classification as shown in Figure2(a).
-- Various objects belonging to the same subordinate-level categories can still cluster together and distance each other as shown in Figure2(b).
+- The output object token from **the vision encoder perserves discriminative information for classification** as shown in Figure2(a).
+- Various objects belonging to the same subordinate-level categories can still cluster together and distance each other as shown in Figure2(d).
+
+##### Category Knowledge Reserve
+
+Is the expert knowledge quintessential for FGVR already contained in MLLMs? The author **hypothesize that MLLMs' underperformance in FGVR task stem from the inadequate knowledge of subordinate-level categories.**
+
+Idefics2 exhibits better classification performance than the text encoder of SigLIP, demonstrating its superiority in reserving category knowledge. Despite the rich semantics of the generated category description, the category names have lower discriminability in the representation space of Idefics2 than the text model of SigLIP, illustrated in Figure 2b and 2e.
+
+##### Object-Category Alignment
+
+Since the Idefics2 has an acceptable capability of object information extraction and adequate knowledge of subordinate-level categories. The author hypothesize that the misalignment between the visual object and category name is the root cause.
+
+As shown in Figures 2c and 2f, object and category representations have significant semantic gap. The object cannot match the ground-truth category in the representation space and thus fails to decode into the correct category name
+
+#### Method
+
+<img src="/Users/zhuyue/Code/python/Daily-Paper-Reading/Deep Learning/resource/image-20250210225207778.png" alt="image-20250210225207778" style="zoom:50%;" />
