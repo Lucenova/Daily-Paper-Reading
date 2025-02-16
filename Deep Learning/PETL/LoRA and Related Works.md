@@ -33,7 +33,7 @@ In fact, the explanation applies equally if $A$ and $B$ are swapped, so it does 
 
 VeRA propose a method which could significantly decrease the parameter of LoRA. Instead of initializing $A$ and $B$ fpr each layer,  the authors introduced a shared low-rank matrix across the layers. Additionally, they introduce two trainale parameters $b$ and $d$.
 
-<img src="/Users/zhuyue/Code/python/Daily-Paper-Reading/Deep Learning/resource/image-20250216121514272.png" alt="image-20250216121514272" style="zoom:50%;" />
+<img src="../resource/image-20250216121514272.png" alt="image-20250216121514272" style="zoom:50%;" />
 
 ##### DoRA
 
