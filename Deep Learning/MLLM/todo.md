@@ -1,0 +1,22 @@
+- ~~F1. ERRET: REFER AND GROUND ANYTHING ANY-WHERE AT ANY GRANULARITY~~
+- ~~What Factors Affect Multi-Modal In-Context Learning? An In-Depth Exploration~~
+- ~~ANALYZING AND BOOSTING THE POWER OF FINEGRAINED VISUAL RECOGNITION FOR MULTI-MODALLARGE LANGUAGE MODELS~~
+- ~~What matters when building vision-language models?~~
+- ~~QLIP: Text-Aligned Visual Tokenization Unifies Auto-Regressive Multimodal Understanding and Generation~~
+- ~~ALIGNVLM: Bridging Vision and Language Latent Spaces for Multimodal Understanding~~
+- ~~SEA: Supervised Embedding Alignment for Token-Level Visual-Textual Integration in MLLMs~~
+- Qwen2.5-VL Technical Report 
+- Mitigating Visual Knowledge Forgetting in MLLM Instruction-tuning via Modality-decoupled Gradient Descent 
+- Symmetrical Visual Contrastive Optimization: Aligning Vision-Language Models with Minimal Contrastive Images
+- LLaVA-ST: A Multimodal Large Language Model for Fine-Grained Spatial-Temporal Understanding
+- Re-Align: Aligning Vision Language Models via Retrieval-Augmented Direct Preference Optimization 
+- Aligning Modalities in Vision Large Language Models via Preference Fine-tuning 
+- Rethinking Modality Alignment in Multi-Modal Large Language Models 
+- SHOULD VLMS BE PRE-TRAINED WITH IMAGE DATA? 
+- Adversarial Tokenization 
+- “Principal Components” Enable A New Language of Images 
+- V2Flow: Unifying Visual Tokenization and Large Language Model Vocabularies for Autoregressive Image Generation 
+- Efficient Large Multi-modal Models via Visual Context Compression 
+- FLAIR: VLM with Fine-grained Language-informed Image Representations 
+- UniTok: A Unified Tokenizer for Visual Generation and Understanding
+
